@@ -3,7 +3,7 @@
 **High-efficiency CLI utility for YouTube audio streaming and extraction**  
 A minimal Bash wrapper around yt-dlp and mpv optimized for fast terminal-based music playback and high-quality MP3 downloading.
 
-## Core Functionality
+## Core Functionality 
 
 - **Real-time audio streaming**  
   Direct audio-only playback using mpv (video stream is completely bypassed)
