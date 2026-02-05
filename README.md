@@ -77,5 +77,5 @@ Recently played history
 Colored output & better UX feedback
 Optional bitrate selection for downloads
 
-##License
-##Subodh Wagh
+# License
+## Subodh Wagh
