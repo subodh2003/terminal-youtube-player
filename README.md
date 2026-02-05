@@ -35,47 +35,21 @@ cd terminal-youtube-player
 # 2. Give execution permission
 chmod 755 yt-terminal-player.sh
 
-# 3. (Optional) Make it globally available
-sudo mv yt-terminal-player.sh /usr/local/bin/ytplay
-Now you can run it by typing:
-Bashytplay
-# or
+# 3. Run
 ./yt-terminal-player.sh
-Usage & Commands
-Very simple input grammar:
-textsong name                     →   play the song immediately
-d song name                   →   download as high-quality mp3
-exit                          →   quit the player
-Examples
-textEnter: perfect ed sheeran
-Enter: d stay the kid laroi justin bieber
-Enter: d shape of you
-Enter: exit
-Download Location
-All downloaded files are saved here:
-text./downloads/
-Naming pattern:
-text%(title)s.%(ext)s
-Playback Controls (while mpv is running)
-KeyActionSpacePause / Resume9 / 0Volume down / up← / →Seek -5s / +5sqStop current playback
-Important Implementation Flags
-Bash# Streaming (mpv)
+
+# Important Implementation Flags
 --no-video
 --force-window=no
 --ytdl=yes
 
-# Downloading (yt-dlp)
--x --audio-format mp3
---audio-quality 0
--o "downloads/%(title)s.%(ext)s"
-Planned / Possible Improvements
-
-Better error handling (timeouts, no results, network issues)
-Multiple search result selection
-Simple queue / playlist support
-Recently played history
-Colored output & better UX feedback
-Optional bitrate selection for downloads
+# Planned / Possible Improvements
+- Better error handling (timeouts, no results, network issues)
+- Multiple search result selection
+- Simple queue / playlist support
+- Recently played history
+- Colored output & better UX feedback
+- Optional bitrate selection for downloads
 
 # License
 ## Subodh Wagh
