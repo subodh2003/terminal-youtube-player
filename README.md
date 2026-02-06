@@ -30,6 +30,10 @@ A minimal Bash wrapper around yt-dlp and mpv optimized for fast terminal-based m
 
 # 1. Clone the project
 git clone https://github.com/subodh2003/terminal-youtube-player.git
+
+Install required dependencies first:
+bash requirements.sh
+
 cd terminal-youtube-player
 
 # 2. Give execution permission
