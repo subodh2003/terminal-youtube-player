@@ -1,60 +1,60 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Dependency check
+for cmd in mpv yt-dlp ffmpeg; do
+    command -v "$cmd" >/dev/null 2>&1 || {
+        echo "$cmd is required but not installed."
+        exit 1
+    }
+done
 
 mkdir -p downloads
 
-clear
-echo "🎵 Terminal YouTube Player"
+echo
+echo "Terminal YouTube Player"
 echo "-----------------------------------"
 echo "Type song name to play"
-echo "Type: d <song name>  to download"
+echo "Type: d <song name> to download"
 echo "Type: exit to quit"
 echo "-----------------------------------"
 
+
 while true; do
-    echo ""
-    read -p "Enter: " QUERY
+    echo "Enter: "
+    read -r QUERY
 
-    if [ "$QUERY" = "exit" ]; then
-        echo "Goodbye 👋"
-        exit 0
-    fi
-
+    [ "$QUERY" = "exit" ] && exit 0
     [ -z "$QUERY" ] && continue
 
-    # Check if download command
-    if [[ "$QUERY" == d\ * ]]; then
-        SONG="${QUERY:2}"
-        echo "🔍 Searching for download..."
+    # Download mode
+    case "$QUERY" in
+        d\ *)
+            SONG="${QUERY#d }"
+            echo "Searching for download..."
 
-        yt-dlp \
-            -x --audio-format mp3 \
-            --audio-quality 0 \
-            -o "downloads/%(title)s.%(ext)s" \
-            "ytsearch1:$SONG"
+            yt-dlp \
+                -x \
+                --audio-format mp3 \
+                --audio-quality 0 \
+                -o "downloads/%(title)s.%(ext)s" \
+                "ytsearch1:$SONG"
 
-        echo "✅ Download completed."
-        continue
-    fi
+            echo "Download completed."
+            continue
+            ;;
+    esac
 
-    echo "🔍 Searching..."
+    echo "Searching..."
     ID=$(yt-dlp "ytsearch1:$QUERY" --get-id 2>/dev/null)
 
-    if [ -z "$ID" ]; then
-        echo "No results found."
-        continue
-    fi
+    [ -z "$ID" ] && echo "No results found." && continue
 
     URL="https://youtu.be/$ID"
 
-    echo "▶ Now Playing: $QUERY"
+    echo "Now Playing: $QUERY"
     echo ""
 
-    mpv --no-video \
-        --force-window=no \
-        --terminal=yes \
-        --msg-level=all=no,statusline=info \
-        --ytdl=yes \
-        "$URL"
+    mpv --no-video --force-window=no --really-quiet "$URL"
 
 done
 
