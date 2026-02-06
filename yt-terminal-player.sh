@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# Dependency check
-for cmd in mpv yt-dlp ffmpeg; do
-    command -v "$cmd" >/dev/null 2>&1 || {
-        echo "$cmd is required but not installed."
-        exit 1
-    }
-done
-
 mkdir -p downloads
 
 echo
